@@ -7,10 +7,4 @@ class User < ActiveRecord::Base
  
   validates_exclusion_of :screen_name, :in=>%w(admin superuser)
 
-  def before_validation
-    self.email = self.email+ '@rp.edu.sg'
-  end
-  def after_validation
-    self.email = self.email.gsub("@rp.edu.sg","")
-  end
 end
