@@ -1,0 +1,15 @@
+<div id="sign_up" class="home_page">
+  <ul id ="nav">
+    <li><h3><%= link_to "Sign in", sign_in_path %></h3></li>
+    <li class ="current_tab"><h3><%= link_to "Sign up", sign_up_path %></h3></li>
+  </ul>
+  <div class ="form">
+    <% semantic_form_for @user do |form| %>
+      <%= form.error_messages %>
+      <%= render :partial => "/users/inputs", :locals => { :form => form } %>
+      <% form.buttons do %>
+        <%= form.commit_button "Sign up" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
