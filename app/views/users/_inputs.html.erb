@@ -1,5 +1,5 @@
 <% form.inputs do %>
-  <%= form.input :email %>
+  <%= form.input :email,:label=>'Student Id',:input_html=>{:size=>6},:hint=>"@myrp.edu.sg"%>
   <%= form.input :screen_name %>
   <%= form.input :password %>
   <%= form.input :password_confirmation, :label => "Confirm password" %>

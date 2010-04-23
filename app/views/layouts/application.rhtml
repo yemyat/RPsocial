@@ -10,18 +10,24 @@
   </head>
   <body>
     <div id ="content">
-      <% if controller_name =='posts' %>
-        <div id ="notification" display="none"><%= flash[:notice] %></div>
-        <div id ="header"><h1>LogoGoesHere</h1></div>
+      <%if current_user and signed_in?%>
+        <div id ="status_bar">
+          <em>Whuzzup, <%=current_user.screen_name%>!</em> (<%=link_to 'Sign out',sign_out_path%>)
+        </div>
+      <%end%>
+
+      <% if controller_name =='posts' or controller_name == 'users' or controller_name=='sessions'%>
+        <div id ="notification"><%= flash[:notice] %></div>
+        <%if controller_name =="posts"%>
+          <div id ="header"><h1>LogoGoesHere</h1></div>
+        <%end%>
       <%end%>
       <% if controller_name=='passwords' %>
         <div class="page">
           <%= yield %>
         </div>
       <%else%>
-
         <%=yield%>
-
       <%end%>
     </div>
   </body>

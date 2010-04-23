@@ -33,7 +33,7 @@ Rails::Initializer.run do |config|
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
- 
+ config.action_mailer.default_url_options = { :host => 'young-stream-83.heroku.com' }
   config.time_zone = 'UTC'
   config.gem  "clearance"
   config.gem 'formtastic'
