@@ -29,6 +29,16 @@
       <%else%>
         <%=yield%>
       <%end%>
+
+      <%if controller_name == 'sessions'%>
+        <div id ="update_stream">
+          Latest happenings...
+          <div id="stream">
+            <%= render :partial => 'posts/post', :collection=>Post.find(:all, :order => "created_at DESC",:limit=>3)%>
+          </div>
+          <%=periodically_call_remote :url => "/posts/fetch_limited_posts",:method=>:get,:frequency=>3%>
+        </div>
+      <%end%>
     </div>
   </body>
 </html>

@@ -1,6 +1,7 @@
 <% div_for post do %>
-  <blockquote><%= post.status %></blockquote>
-  Happened <%= time_ago_in_words(post.created_at) %> ago --
+  <blockquote><%=h post.status %></blockquote>
+  Happened <%=h time_ago_in_words(post.created_at) %> ago --
   <%updated_by = User.find(:first,:conditions=>["id = ?",post.user_id])%>
-  <em><%=updated_by.screen_name%></em>
+  <em><%=h updated_by.screen_name%></em>
+  <span style="float:right"><a name="fb_share" type="button_count" share_url="young-stream-83.heroku.com<%=feed_path(post.id)%>" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script></span>
 <% end %>

@@ -28,10 +28,20 @@ li{
 
 }
 
+#update_stream {
+    margin-top:20px;
+    padding:10px 10px;
+    background-color:white;
+    -moz-border-radius: 15px;
+    -webkit-border-raidus : 15px;
 
+}
+
+#update_stream .post{
+    border-bottom:0.5px solid black;
+}
 .post {
     padding: 10px 20px;
-
     background-color: #ffffff;
     margin: 20px 0 20px 0;
     font-size:0.7em;

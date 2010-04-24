@@ -1,0 +1,9 @@
+<div class ="post"> 
+<blockquote><%=h @post.status %></blockquote>
+  Happened <%=h time_ago_in_words(@post.created_at) %> ago --
+  <%updated_by = User.find(:first,:conditions=>["id = ?",@post.user_id])%>
+  <em><%=h updated_by.screen_name%></em>
+</div>
+<span style="float:right">
+  <%=link_to 'See more...', sign_in_path%>
+</span>
