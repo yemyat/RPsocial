@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @page_title = @post.status
     respond_to do |format|
       format.html
     end

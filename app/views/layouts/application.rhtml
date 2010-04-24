@@ -3,8 +3,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title><%=controller_name%>: <%= controller.action_name %></title>
+    <meta content='text/html; charset=UTF-8' http-equiv='content-type' /> 
+    <%unless controller_name=='posts' and controller.action_name=='show'%>
+      <title><%=controller_name%>: <%= controller.action_name %></title>
+    <%else%>
+      <title><%=@page_title%></title>
+    <%end%>
     <%= stylesheet_link_tag 'main','formtastic' %>
     <%= javascript_include_tag :all %>
   </head>
