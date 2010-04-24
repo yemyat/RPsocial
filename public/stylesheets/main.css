@@ -43,6 +43,7 @@ li{
 }
 .post {
     padding: 10px 20px;
+    padding-bottom:20px;
     background-color: #ffffff;
     margin: 20px 0 20px 0;
     font-size:0.7em;
@@ -56,7 +57,10 @@ li{
     margin:0;
 }
 
-
+.post img{
+    vertical-align:middle;
+    margin-right:10px;
+}
 .fieldWithErrors {
     padding: 2px;
     background-color: red;

@@ -5,3 +5,4 @@
 </div>
 <%=will_paginate @posts,:remote => "true"%>
 <%=periodically_call_remote :url => {:action => :fetch_new_posts},:method=>:get,:frequency =>'30'%>
+

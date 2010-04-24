@@ -1,4 +1,5 @@
 clearance
 sanitize
 formtastic
+gravtastic
 mislav-will_paginate --source http://gems.github.com
