@@ -32,14 +32,14 @@ li{
     margin-top:20px;
     padding:10px 10px;
     background-color:white;
-    border:0.5px solid black;
+    border:1px solid black;
     -moz-border-radius: 15px;
     -webkit-border-raidus : 15px;
 
 }
 
 #update_stream .post{
-    border-bottom:0.5px solid black;
+    border-bottom:1px solid black;
 }
 .post {
     padding: 10px 20px;
@@ -148,12 +148,12 @@ li{
     font-size:1.2em;
 }
 #share_form textarea{
-    border:0.5px solid black;
+    border:1px solid black;
 }
 #share_form input[type=submit]{
     background-color:#0F0B19;
     color:white;
-    border:0.5px solid #0F0B19;
+    border:1px solid #0F0B19;
 }
 #share_form input[type=submit]:disabled{
     color:#0F0B19;
@@ -166,7 +166,7 @@ li{
 
 .form ,.page{
     background-color:white;
-    border:0.5px solid black;
+    border:1px solid black;
 }
 #nav{
     padding:0;
@@ -185,7 +185,7 @@ li{
     display:block;
     list-style: none;
     float:left;
-    border:0.5px solid black;
+    border:1px solid black;
     -moz-border-radius-topright: 15px;
     -webkit-border-top-right-raidus : 15px;
     -moz-border-radius-topleft: 15px;
