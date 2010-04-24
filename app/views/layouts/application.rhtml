@@ -4,13 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='content-type' /> 
-    <%unless controller_name=='posts' and controller.action_name=='show'%>
-      <title><%=controller_name%>: <%= controller.action_name %></title>
-    <%else%>
-      <title><%=@page_title%></title>
-    <%end%>
+
+    <title>RPsocial : <%= controller.action_name %></title>
+
     <%= stylesheet_link_tag 'main','formtastic' %>
     <%= javascript_include_tag :all %>
+    <link rel="image_src" href="http://betacie.cachefly.net/fmylife/images/logo400.en.jpg" />
+
   </head>
   <body>
     <div id ="content">
@@ -23,7 +23,7 @@
       <% if controller_name =='posts' or controller_name == 'users' or controller_name=='sessions'%>
         <div id ="notification"><%= flash[:notice] %></div>
         <%if controller_name =="posts"%>
-          <div id ="header"><h1>LogoGoesHere</h1></div>
+          <div id ="header"><h1>RPsocial</h1></div>
         <%end%>
       <%end%>
       <% if controller_name=='passwords' %>
@@ -40,7 +40,7 @@
           <div id="stream">
             <%= render :partial => 'posts/post', :collection=>Post.find(:all, :order => "created_at DESC",:limit=>3)%>
           </div>
-          <%=periodically_call_remote :url => "/posts/fetch_limited_posts",:method=>:get,:frequency=>3%>
+          <%=periodically_call_remote :url => "/posts/fetch_limited_posts",:method=>:get,:frequency=>'30'%>
         </div>
       <%end%>
     </div>

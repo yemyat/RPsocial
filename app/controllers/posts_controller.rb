@@ -33,26 +33,30 @@ class PostsController < ApplicationController
   end
 
   def fetch_new_posts
-    @updated_post = Post.find(:first,:conditions=>['id > ?',session[:last_retrieval]])
+    @updated_posts = Post.find(:all,:conditions=>['id > ?',session[:last_retrieval]])
     render :update do |page|
-      unless @updated_post.nil?
-        page.insert_html :top, "posts", :partial => @updated_post
-        page[@updated_post].visual_effect :highlight    
-        session[:last_retrieval] = @updated_post.id.to_s
-      end 
+      unless @updated_posts.nil?
+        @updated_posts.each do |updated_post|
+          page.insert_html :top, "posts", :partial => updated_post
+          page[updated_post].visual_effect :highlight
+          session[:last_retrieval] = updated_post.id.to_s
+        end
+      end
     end
   end
 
   def fetch_limited_posts
-    @updated_post = Post.find(:first,:conditions=>['id > ?',session[:last_retrieval]])
+    @updated_posts = Post.find(:all,:conditions=>['id > ?',session[:last_retrieval]])
     render :update do |page|
-      unless @updated_post.nil?
-        page.insert_html :top, "stream", :partial => @updated_post
-        page[@updated_post].visual_effect :shake
-        
-        todelete = 'post_'+(@updated_post.id-3).to_s
-       page.remove todelete
-        session[:last_retrieval] = @updated_post.id.to_s
+      unless @updated_posts.nil?
+        @updated_posts.each do |updated_post|
+          page.insert_html :top, "stream", :partial => updated_post
+          page[updated_post].visual_effect :highlight
+          page[updated_post].visual_effect :shake
+          todelete = 'post_'+(updated_post.id-3).to_s
+          page.remove todelete
+          session[:last_retrieval] = updated_post.id.to_s
+        end
       end
     end
   end
