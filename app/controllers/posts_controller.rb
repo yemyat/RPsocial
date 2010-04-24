@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.create(:status => params[:status])
+    @post = current_user.posts.create(:status =>  params[:status])
     render :update do |page|
       if @post.save
         page.insert_html :top, :posts, :partial => @post
