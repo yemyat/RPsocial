@@ -9,7 +9,7 @@
       <%= form.error_messages %>
       <%= render :partial => "/users/inputs", :locals => { :form => form } %>
       <p style="font-size: 0.8em;">
-        *This application uses your avatar from <%=link_to "Gravatar","http://www.gravatar.com/"%>.
+        *This application uses your avatar from <%=link_to "Gravatar","http://www.gravatar.com/"%>. Please register there with the same email address as this.
       </p>
       <% form.buttons do %>
         <%= form.commit_button "Sign up" %>
