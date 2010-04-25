@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate,:except=>[:fetch_limited_posts,:show]
-  before_filter :is_correct_user,:except=>[:show]
+ 
   
   def index
     @posts = Post.paginate(:page=>params[:page] || 1,:per_page => 10,:order => "created_at DESC")
