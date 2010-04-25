@@ -10,11 +10,11 @@
       <div id ="view_comments_<%=post.id%>" style="display:none;">
 
 
-       
+
         <span class="add_comment" id ="add_comment_<%=post.id%>">
           <%=render :partial => "/comments/comment_form", :locals => { :this_post => post }%>
         </span>
-         <%=render :partial => "/comments/comment",:collection=>my_comments%>
+        <%=render :partial => "/comments/comment",:collection=>my_comments%>
       </div>
       <div class="clear"></div>
 
@@ -29,7 +29,9 @@
     </div>
     <span style="float:left;">
       <a href="http://twitter.com/home?status=#RPsocial : <%=post.status%> at <%='http://rpsocial.heroku.com/feed/'+post.id.to_s%>" title='Twitter'>Share on Twitter</a>
-      <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent("rpsocial.heroku.com/feed/<%=post.id%>")+'&t='+encodeURIComponent("<%=post.status%>"),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><a href="http://www.facebook.com/share.php?u=<url>" onclick="return fbs_click()" target="_blank">Share on FB</a>
+      <iframe src="http://www.facebook.com/widgets/like.php?href=http://rpsocial.heroku.com/feed/<%=post.id.to_s%>"
+              scrolling="no" frameborder="0"
+              style="border:none; width:300px; height:20px;display:inline;"></iframe>
     </span>
   </div>
 <%end%>
