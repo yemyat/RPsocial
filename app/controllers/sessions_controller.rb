@@ -6,6 +6,6 @@ class SessionsController < Clearance::SessionsController
   end
   private
   def url_after_create
-    user_posts_path(current_user.id)
+    user_posts_path(:screen_name=>current_user.screen_name)
   end
 end

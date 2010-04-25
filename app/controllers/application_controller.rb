@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   def can_remember
     if current_user and signed_in?
-      redirect_to user_posts_path(current_user)
+      redirect_to user_posts_path(:screen_name => current_user.screen_name)
     end
   end
   # Scrub sensitive parameters from your log
