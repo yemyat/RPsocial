@@ -6,11 +6,11 @@
     <%my_comments=Comment.find(:all,:conditions=>["post_id = ?",post.id])%>
     <div  class ="comments_area" style ="float:right;margin-top:0px;">
       <a href="#" onclick="new Effect.toggle('view_comments_<%=post.id%>','blind'); return false;" ><span id ="view_comment_<%=post.id%>">View comments (<%=my_comments.size.to_s%>)</span></a>
-
+      <a href="#" onclick="new Effect.toggle('add_comment_<%=post.id%>','blind'); return false;" >Comment</a>
       <div id ="view_comments_<%=post.id%>" style="display:none;">
         <%=render :partial => "/comments/comment",:collection=>my_comments%>
       </div>
-      <span class="add_comment" id ="add_comment_<%=post.id%>">
+      <span class="add_comment" id ="add_comment_<%=post.id%>" style="display:none">
         <%=render :partial => "/comments/comment_form", :locals => { :this_post => post }%>
       </span>
       <div class="clear"></div>
