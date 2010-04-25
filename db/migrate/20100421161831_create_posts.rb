@@ -2,7 +2,7 @@ class CreatePosts < ActiveRecord::Migration
   def self.up
     create_table :posts do |t|
       t.integer :user_id
-      t.string :status
+      t.string :status,:limit=>600
 
       t.timestamps
     end

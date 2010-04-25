@@ -19,7 +19,7 @@
   <%end%>
   <span style ="float:left"><%= image_tag updated_by.gravatar_url %></span>
   <div>
-    <blockquote style ="width:90%;"><%=h post.status %></blockquote>
+    <blockquote><%=h post.status %></blockquote>
     Happened <%=h time_ago_in_words(post.created_at) %> ago --
     <em><%=h updated_by.screen_name%></em>
     <div class="clear">
