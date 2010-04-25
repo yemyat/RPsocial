@@ -35,8 +35,10 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   require 'rubygems'
   require 'sanitize'
+
   config.gem 'sanitize'
   config.gem 'gravtastic', :version => '>= 2.1.0'
+
   config.action_mailer.default_url_options = { :host => 'rpsocial.heroku.com' }
   config.time_zone = 'UTC'
   config.gem  "clearance"

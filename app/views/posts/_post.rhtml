@@ -1,14 +1,35 @@
 <% div_for post do %>
   <%updated_by = User.find(:first,:conditions=>["id = ?",post.user_id])%>
+
+
+  <%if controller_name == 'posts'%>
+    <%my_comments=Comment.find(:all,:conditions=>["post_id = ?",post.id])%>
+    <div  class ="comments_area" style ="float:right;margin-top:0px;">
+      <a href="#" onclick="new Effect.toggle('view_comments_<%=post.id%>','blind'); return false;" ><span id ="view_comment_<%=post.id%>">View comments (<%=my_comments.size.to_s%>)</span></a>
+
+      <div id ="view_comments_<%=post.id%>" style="display:none;">
+
+
+       
+        <span class="add_comment" id ="add_comment_<%=post.id%>">
+          <%=render :partial => "/comments/comment_form", :locals => { :this_post => post }%>
+        </span>
+         <%=render :partial => "/comments/comment",:collection=>my_comments%>
+      </div>
+      <div class="clear"></div>
+
+    </div>
+  <%end%>
   <span style ="float:left"><%= image_tag updated_by.gravatar_url %></span>
-
-    <blockquote><%=h post.status %></blockquote>
+  <div>
+    <blockquote style ="width:90%;"><%=h post.status %></blockquote>
     Happened <%=h time_ago_in_words(post.created_at) %> ago --
-
     <em><%=h updated_by.screen_name%></em>
-    <span style="float:right">
+    <div class="clear">
+    </div>
+    <span style="float:left;">
       <a href="http://twitter.com/home?status=#RPsocial : <%=post.status%> at <%='http://rpsocial.heroku.com/feed/'+post.id.to_s%>" title='Twitter'>Share on Twitter</a>
       <script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent("rpsocial.heroku.com/feed/<%=post.id%>")+'&t='+encodeURIComponent("<%=post.status%>"),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><a href="http://www.facebook.com/share.php?u=<url>" onclick="return fbs_click()" target="_blank">Share on FB</a>
     </span>
-
+  </div>
 <%end%>

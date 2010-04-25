@@ -3,6 +3,8 @@ class SessionsController < Clearance::SessionsController
   def new
     @posts = Post.find(:all, :order => "created_at DESC",:limit=>3)
     session[:last_retrieval] = @posts.first.id
+
+
   end
   private
   def url_after_create

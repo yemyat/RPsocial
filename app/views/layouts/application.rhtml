@@ -13,15 +13,23 @@
 
   </head>
   <body>
+    <div id ="status_line">
+    </div>
     <div id ="content">
       <%if current_user and signed_in?%>
+
         <div id ="status_bar">
           <em>Whuzzup, <%=current_user.screen_name%>!</em> (<%=link_to 'Sign out',sign_out_path%>)
         </div>
+
       <%end%>
 
       <% if controller_name =='posts' or controller_name == 'users' or controller_name=='sessions'%>
-        <div id ="notification"><%= flash[:notice] %></div>
+        <% if controller_name == 'posts' %>
+          <div id ="notification"><%= flash[:notice] %></div>
+        <%else%>
+          <div id ="notification2"><%= flash[:notice] %></div>
+        <%end%>
         <%if controller_name =="posts"%>
           <div id ="header"><h1>RPsocial</h1></div>
         <%end%>
@@ -40,9 +48,14 @@
           <div id="stream">
             <%= render :partial => 'posts/post', :collection=>Post.find(:all, :order => "created_at DESC",:limit=>3)%>
           </div>
-          <%=periodically_call_remote :url => "/posts/fetch_limited_posts",:method=>:get,:frequency=>'30'%>
+          <%=periodically_call_remote :url => "/posts/fetch_limited_posts",:method=>:get,:frequency=>'15'%>
         </div>
       <%end%>
+    </div>
+    <div id ="footer">
+      <p style="float:right;margin-top:0px;padding-top:0px;">
+        Developed by <%=link_to 'Ye Myat Min','mailto:yemyat@gmail.com' %>
+      </p>
     </div>
     <script type="text/javascript">
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -1,12 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
+
+
   map.resource :session, :controller => 'sessions'
 
   Clearance::Routes.draw(map)
   map.resources :users  do |user|
-    user.resources :posts,:only => [:index,:create,:show],:collection=>{:fetch_new_posts=>:get},:path_prefix => ':screen_name'
+    user.resources :posts,:only => [:index,:create,:show],:collection=>{:fetch_new_posts=>:get,:add_comment=>:post},:path_prefix => ':screen_name'
   end
 
   map.resources :posts,:collection=>{:fetch_limited_posts=>:get}
+  map.resources :comments, :only=>[:new,:show]
   map.feed '/feed/:id', :controller=>'posts',:action=>'show'
   map.root :controller=>'sessions',:action=>'new'
   # The priority is based upon order of creation: first created -> highest priority.

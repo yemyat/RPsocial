@@ -1,0 +1,6 @@
+comments_area = "view_comments_"+@post_id.to_s
+my_comments=Comment.find(:all,:conditions=>["post_id = ?",@post_id])
+page.insert_html :bottom, comments_area, :partial => @comment
+page.replace_html "view_comment_#{@post_id.to_s}","View comments ("+my_comments.size.to_s+")"
+page[ "view_comment_#{@post_id.to_s}"].visual_effect :highlight
+page[@comment].visual_effect :shake

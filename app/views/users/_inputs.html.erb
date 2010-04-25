@@ -1,6 +1,7 @@
 <% form.inputs do %>
   <%= form.input :email,:label=>'Student Id',:input_html=>{:size=>6},:hint=>"@rp.edu.sg"%>
-  <%= form.input :screen_name %>
-  <%= form.input :password %>
-  <%= form.input :password_confirmation, :label => "Confirm password" %>
+  <%= form.input :screen_name,:input_html=>{:size=>25}%>
+  <%= form.input :password,:input_html=>{:size=>25} %>
+  <%= form.input :password_confirmation, :label => "Confirm password",:input_html=>{:size=>25} %>
+  <%= form.input :gravatar_email,:label => "Gravatar email",:hint=>"Leave it blank if it is the same with your RP email address",:required=>false,:input_html=>{:size=>25} %>
 <% end %>

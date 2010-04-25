@@ -1,6 +1,6 @@
 
 body{
-    font-family: tahoma, sans-serif;
+    font-family: "Letter Gothic",tahoma, sans-serif;
     font-size: 18px;
     background-color: #C5E946;
     width: 100%;
@@ -27,7 +27,18 @@ li{
     text-align: left;
 
 }
+#footer{
+    position:fixed;
+    bottom:0;
+    color:white;
+    background-color:#0F0B19;
+    width:100%;
+    padding-right:10px;
+    height:20px;
+    font-size:0.7em;
+    clear :both;
 
+}
 #update_stream {
     margin-top:20px;
     padding:10px 10px;
@@ -50,6 +61,7 @@ li{
     color: #8d8b8b;
     -moz-border-radius: 15px;
     -webkit-border-raidus : 15px;
+    min-height:60px;
 }
 .post blockquote{
     color:#000;
@@ -99,10 +111,18 @@ li{
 #notification{
     float:right;
     text-align:center;
-    display:table;
+    display:block;
     background-color:#FFCF00;
     padding:2px 20px;
     max-width:inherit;
+}
+#notification2{
+    margin:0 auto;
+    display:block;
+    background-color:#FFCF00;
+    padding:2px 20px;
+    max-width:inherit;
+    text-align:center;
 }
 
 .pagination{
@@ -212,6 +232,12 @@ li{
     background-color:#0F0B19;
     color:white;
 }
+#status_line{
+    position:relative;
+    top:0%;
+    background-color:#0F0B19;
+    height:10px;
+}
 #status_bar {
     font-size:0.8em;
     position:relative;
@@ -220,4 +246,15 @@ li{
     background-color:#0F0B19;
     color:white;
     padding:2px 10px;
+}
+.clear {
+    clear: both;
+    padding-top: 5px;
+
+}
+.comments_area{
+    max-width:200px;
+}
+.comment {
+    padding-bottom:5px;
 }

@@ -1,0 +1,6 @@
+<% div_for comment do %>
+  <%commented_by = User.find_by_id(comment.user_id)%>
+  <span style ="float:left"><%= image_tag commented_by.gravatar_url(:size=>25) %></span>
+  <b><%=commented_by.screen_name%></b>: <%=comment.comment%>
+  <div class="clear"></div>
+<%end%>

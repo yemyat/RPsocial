@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
       redirect_to user_posts_path(:screen_name => current_user.screen_name)
     end
   end
+
+  def is_correct_user
+    unless current_user.screen_name == params[:screen_name]
+      
+        redirect_to sign_out_path
+    
+    end
+  end
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 end

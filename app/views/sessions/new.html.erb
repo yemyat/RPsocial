@@ -10,8 +10,8 @@
     <br/>
     <% semantic_form_for :session, :url => session_path do |form| %>
       <% form.inputs do %>
-        <%= form.input :email %>
-        <%= form.input :password, :as => :password %>
+        <%= form.input :email,:input_html=>{:size=>25} %>
+        <%= form.input :password, :as => :password,:input_html=>{:size=>25}%>
         <%=form.input :remember_token, :as=>:boolean,:label =>'Remember me?',:required=>false%>
       <% end %>
       <% form.buttons do %>
