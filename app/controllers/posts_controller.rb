@@ -3,7 +3,7 @@ class PostsController < ApplicationController
  
   
   def index
-    @posts = Post.paginate(:page=>params[:page] || 1,:per_page => 10,:order => "created_at DESC")
+    @posts = Post.paginate(:page=>params[:page] || 1,:per_page => 7,:order => "created_at DESC")
     unless @posts.first.nil?
       if params[:page] == 1 or params[:page].nil?
         session[:last_retrieval] = @posts.first.id
@@ -24,43 +24,33 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.create(:status =>  params[:status])
-    render :update do |page|
-      if @post.save
-        page.insert_html :top, :posts, :partial => @post
-        page[@post].visual_effect :highlight
-        session[:last_retrieval] = @post.id
-      else
-        flash[:notice] = "Status failed to be updated."
-      end
+    @post = current_user.posts.create!(:status =>  params[:status])
+    session[:last_retrieval] =@post.id
+    flash[:notice] = "Shared"
+    respond_to do |format|
+      format.html {redirect_to user_posts_path(:screen_name=>current_user.screen_name)}
+      format.js {render :layout=>false}
     end
   end
 
   def fetch_new_posts
-    @updated_posts = Post.find(:all,:conditions=>['id > ?',session[:last_retrieval]])
-    render :update do |page|
-      unless @updated_posts.nil?
-        @updated_posts.each do |updated_post|
-          page.insert_html :top, "posts", :partial => updated_post
-          page[updated_post].visual_effect :highlight
-          session[:last_retrieval] = updated_post.id.to_s
-        end
+    @updated_posts = Post.find(:all,:conditions=>['id > ?',session[:last_retrieval]],:order=>"created_at DESC")
+    unless @updated_posts.nil?
+      respond_to do |format|
+        format.html {redirect_to user_posts_path(:screen_name=>current_user.screen_name)}
+        format.js {render :partial=>@updated_posts}
+        session[:last_retrieval] = @updated_posts.first.id
       end
     end
   end
 
   def fetch_limited_posts
-    @updated_posts = Post.find(:all,:conditions=>['id > ?',session[:last_retrieval]])
-    render :update do |page|
-      unless @updated_posts.nil?
-        @updated_posts.each do |updated_post|
-          page.insert_html :top, "stream", :partial => updated_post
-          page[updated_post].visual_effect :highlight
-          page[updated_post].visual_effect :shake
-          todelete = 'post_'+(updated_post.id-3).to_s
-          page.remove todelete
-          session[:last_retrieval] = updated_post.id.to_s
-        end
+    @updated_posts = Post.find(:all,:conditions=>['id > ?',session[:last_retrieval]],:order=>"created_at DESC")
+    unless @updated_posts.nil?
+      respond_to do |format|
+        format.html {redirect_to user_posts_path(:screen_name=>current_user.screen_name)}
+        format.js {render :partial=>@updated_posts}
+        session[:last_retrieval] = @updated_posts.first.id
       end
     end
   end

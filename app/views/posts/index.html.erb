@@ -1,8 +1,32 @@
-<%= render :partial => "status" %>
-
-<div id ="posts">
-  <%=render :partial => @posts%>
+<div class="left_page">
+  <div id ="user_control">
+    <%= current_user.screen_name%> =>
+    <ul id="post_nav">
+      <li id ="post"><%= link_to_function 'Post'," $('#share_form').slideToggle('slow', function() {});"%></li>
+      <li id ="sign_out"><%= link_to 'Sign out',sign_out_path %></li>
+    </ul>
+  </div>
 </div>
-<%=will_paginate @posts,:remote => "true"%>
-<%=periodically_call_remote :url => {:action => :fetch_new_posts},:method=>:get,:frequency =>'15'%>
+<div class="middle_page">
+  <%=image_tag 'border.png'%>
+</div>
+<div class ="right_page">
+  <div id ="posts">
+    <%=render :partial => @posts%>
+  </div>
+  <%=will_paginate @posts,:remote => "true"%>
+</div>
 
+
+<script>
+  function callMe()
+  {
+    $.ajax({
+      method: 'get',
+      url : "<%=url_for(:controller=>'posts',:action=>'fetch_new_posts')%>",
+      dataType : 'text',
+      success: function (text) { $('#posts').prepend(text);}
+    });
+  }
+  var myInterval = setInterval(callMe, 15000);
+</script>

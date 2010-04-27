@@ -1,0 +1,3 @@
+$("#notification").html('<%=flash.delete(:notice)%>')
+$("#posts").prepend("<%=escape_javascript(render(:partial=>@post))%>")
+$("#status_update")[0].reset()

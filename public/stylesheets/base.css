@@ -1,0 +1,45 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: Helvetica,"Gill Sans",tahoma, sans-serif;
+    font-size:  14px;
+    background-color: #171717;
+    width: 100%;
+    color: #000;
+    margin: 0;
+    letter-spacing: -1px;
+    color:#5c5c5c;
+
+
+}
+a {
+    color:#C7F464;
+    text-decoration: none;
+}
+a:hover{
+    color:#C7F464;
+    text-decoration:underline;
+}
+h1{
+    padding: 0;
+    margin: 0;
+}
+fieldset{
+    border:none;
+}
+li {
+    list-style: none;
+}
+
+blockquote:before {
+    content: open-quote;
+    font-weight: bold;
+}
+blockquote:after {
+    content: close-quote;
+    font-weight: bold;
+}
+

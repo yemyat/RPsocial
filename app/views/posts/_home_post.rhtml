@@ -1,0 +1,11 @@
+<% div_for home_post do %>
+  <%updated_by = User.find(:first,:conditions=>["id = ?",home_post.user_id])%>
+  <span style ="float:left"><%= image_tag updated_by.gravatar_url %></span>
+  <div>
+    <blockquote><%=h home_post.status %></blockquote>
+    Happened <%=h time_ago_in_words(home_post.created_at) %> ago --
+    <em><%=h updated_by.screen_name%></em>
+    <div class="clear">
+    </div>
+  </div>
+<%end%>

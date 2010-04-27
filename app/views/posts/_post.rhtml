@@ -1,8 +1,6 @@
 <% div_for post do %>
   <%updated_by = User.find(:first,:conditions=>["id = ?",post.user_id])%>
-
-
-  <%if controller_name == 'posts'%>
+<!--gr
     <%my_comments=Comment.find(:all,:conditions=>["post_id = ?",post.id])%>
     <div  class ="comments_area" style ="float:right;margin-top:0px;">
       <a href="#" onclick="new Effect.toggle('view_comments_<%=post.id%>','blind'); return false;" ><span id ="view_comment_<%=post.id%>">View comments (<%=my_comments.size.to_s%>)</span></a>
@@ -14,21 +12,13 @@
         <%=render :partial => "/comments/comment_form", :locals => { :this_post => post }%>
       </span>
       <div class="clear"></div>
-
     </div>
-  <%end%>
+-->
+
   <span style ="float:left"><%= image_tag updated_by.gravatar_url %></span>
   <div>
     <blockquote><%=h post.status %></blockquote>
-    Happened <%=h time_ago_in_words(post.created_at) %> ago --
+    <span class="time">Happened <%=h time_ago_in_words(post.created_at) %> ago --</span>
     <em><%=h updated_by.screen_name%></em>
-    <div class="clear">
-    </div>
-    <span style="float:left;">
-      <a href="http://twitter.com/home?status=#RPsocial : <%=post.status%> at <%='http://rpsocial.heroku.com/feed/'+post.id.to_s%>" title='Twitter'>Share on Twitter</a>
-      <iframe src="http://www.facebook.com/widgets/like.php?href=http://rpsocial.heroku.com/feed/<%=post.id.to_s%>"
-              scrolling="no" frameborder="0"
-              style="border:none; width:300px; height:20px;display:inline;"></iframe>
-    </span>
   </div>
 <%end%>

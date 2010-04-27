@@ -1,24 +1,54 @@
-<div id ="sign_in" class="home_page">
- 
-  <ul id ="nav">
-    <li class ="current_tab"><h3><%= link_to "Sign in", sign_in_path %></h3></li>
-    <li> <h3><%= link_to "Sign up", sign_up_path %></h3></li>
-     <span style="float:right;margin-left:140px;background-color:black;color:white;padding:0px 10px;"><h1>RP<em style="color:#C5E946;">social</em></h1></span>
+<div id="navigation">
+  <ul id="nav_bar">
+    <li id ="selected"><%=link_to 'Sign in',sign_in_path%></li>
+    <li><%=link_to 'Sign up',sign_up_path%></li>
   </ul>
+</div>
 
-  <div class ="form">
-    <br/>
-    <% semantic_form_for :session, :url => session_path do |form| %>
-      <% form.inputs do %>
-        <%= form.input :email,:input_html=>{:size=>25} %>
-        <%= form.input :password, :as => :password,:input_html=>{:size=>25}%>
-        <%=form.input :remember_token, :as=>:boolean,:label =>'Remember me?',:required=>false%>
+<div class="line">
+  <div class ="index_form">
+    <div class="form">
+      <br/>
+      <% semantic_form_for :session, :url => session_path do |form| %>
+        <% form.inputs do %>
+          <%= form.input :email,:input_html=>{:size=>25} %>
+          <%= form.input :password, :as => :password,:input_html=>{:size=>30}%>
+          <%=form.input :remember_token, :as=>:boolean,:label =>'Remember me?',:required=>false%>
+        <% end %>
+        <% form.buttons do %>
+          <%= form.commit_button "Sign in" %>
+          <p style=""><%= link_to "Forgot password?", new_password_path %></p>
+        <% end %>
       <% end %>
-      <% form.buttons do %>
-        <%= form.commit_button "Sign in" %>
-        <p style=""><%= link_to "Forgot password?", new_password_path %></p>
-      <% end %>
-    <% end %>
-
+    </div>
   </div>
 </div>
+
+<div id ="update_stream">
+  <%= render :partial => 'posts/home_post', :collection=>Post.find(:all, :order => "created_at DESC",:limit=>3)%>
+</div>
+
+
+<script type="text/javascript">
+
+  function callMe()
+  {
+    $.ajax({
+      method: 'get',
+      url : "<%=url_for(:controller=>'posts',:action=>'fetch_limited_posts')%>",
+      dataType : 'text',
+      success: function (text) {
+        $('#stream').prepend(text);
+        var size = $("#stream > div").size();
+        var limit = 3;
+        while(size>limit) {
+          $('#.post:last').remove();
+          size--;
+        }
+      }
+    });
+  }
+
+  var myInterval = setInterval(callMe, 10000);
+
+</script>
