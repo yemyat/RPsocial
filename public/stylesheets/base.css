@@ -1,6 +1,7 @@
 html, body {
     padding: 0;
     margin: 0;
+
 }
 
 body{
@@ -9,11 +10,9 @@ body{
     background-color: #171717;
     width: 100%;
     color: #000;
-    margin: 0;
     letter-spacing: -1px;
+    word-spacing: 2px;
     color:#5c5c5c;
-
-
 }
 a {
     color:#C7F464;

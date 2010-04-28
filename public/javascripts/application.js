@@ -5,12 +5,17 @@ jQuery.ajaxSetup({
 })
 
 $(document).ready(function(){
-    $("#status_update").submit(function(){
+    $("#status_update_form").submit(function(){
+
+        $("#notification").fadeIn('fast');
+
         $.post($(this).attr("action"),$(this).serialize(),
             function (text) {
-                $('#my_posts').prepend(text);         
-                $('.post:last').remove();
-                $('#status_update')[0].reset();
+                $(text).hide().prependTo('#my_posts').fadeIn("slow");
+                $('.post:last').remove().fadeOut('slow');
+                $('#status_update_form')[0].reset();
+                $("#notification").fadeOut('fast');
+      
             }
             ,"script");
         return false;

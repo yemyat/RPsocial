@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   Clearance::Routes.draw(map)
   map.resources :users  do |user|
-    user.resources :posts,:only => [:index,:create,:show],:collection=>{:fetch_new_posts=>:get,:add_comment=>:post},:path_prefix => ':screen_name'
+    user.resources :posts,:only => [:index,:create,:show],:collection=>{:fetch_new_posts=>:get,:fetch_limited_posts=>:get,:add_comment=>:post},:path_prefix => ':screen_name'
   end
 
   map.resources :posts,:collection=>{:fetch_limited_posts=>:get}

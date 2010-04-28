@@ -1,10 +1,8 @@
-<div id ="share_form" style="display:none">
-  <% form_tag({:controller=>"posts",:action=>"create"},:id=>"status_update") do%>
-    <%= label_tag(:status, "What just happened?") %><br />
-    <%= text_area_tag(:status, nil,:size=>"46x2") %><br />
-    <div class ="ok"><%= submit_tag("Share!!") %></div>
+  <% form_tag({:controller=>"posts",:action=>"create"},:id=>"status_update_form") do%>
+    <%= label_tag(:status, "What's happening?") %><br />
+    <%= text_area_tag(:status, nil,:size=>'50x2') %><br />
+    <div class ="ok"><%= submit_tag("Post") %></div>
   <% end %>
-</div>
 <script type="text/javascript"><!--
   function entertag(evt){
     evt=(evt)?evt:event;

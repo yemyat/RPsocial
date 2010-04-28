@@ -3,7 +3,7 @@ class PostsController < ApplicationController
  
   
   def index
-    @posts = Post.paginate(:page=>params[:page] || 1,:per_page => 7,:order => "created_at DESC")
+    @posts = Post.paginate(:page=>params[:page] || 1,:per_page => 5,:order => "created_at DESC")
     unless @posts.first.nil?
       if params[:page] == 1 or params[:page].nil?
         session[:last_retrieval] = @posts.first.id
@@ -26,7 +26,6 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.create!(:status =>  params[:status])
     session[:last_retrieval] =@post.id
-    flash[:notice] = "Shared"
     respond_to do |format|
       format.html {redirect_to user_posts_path(:screen_name=>current_user.screen_name)}
       format.js {render :partial=>@post}

@@ -1,23 +1,35 @@
-<div class="left_page">
-  <div id ="user_control">
-    <%= current_user.screen_name%> =>
-    <ul id="post_nav">
-      <li id ="post"><%= link_to_function 'Post'," $('#share_form').slideToggle('slow', function() {});"%></li>
-      <li id ="sign_out"><%= link_to 'Sign out',sign_out_path %></li>
-    </ul>
+<div id ="content">
+  <div class="left_page">
+    <div class ="left_container">
+      <div id ="top_logo">
+        <%=image_tag 'logo.gif'%>
+      </div>
+      <div id ="user_control">
+        <span id ='user_photo'><%= image_tag current_user.gravatar_url(:size=>80)%><br/></span>
+        <ul id="post_nav">
+          <li><%=current_user.screen_name%></li>
+          <li id ="sign_out"><%= link_to 'Sign out',sign_out_path %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="middle_page">
+    <div class ="middle_container">
+      <div id ="status_update">
+        <%=render :partial=>'posts/status'%>
+      </div>
+      <div id ="my_posts">
+        <%=render :partial => @posts%>
+        <%=will_paginate @posts%>
+      </div>
+    </div>
+  </div>
+  <div class ="right_page">
+    <div class ="middle_container">
+      {Comment module}
+    </div>
   </div>
 </div>
-<div class="middle_page">
-  <%=image_tag 'border.png'%>
-</div>
-<div class ="right_page">
-  <div id ="my_posts">
-    <%=render :partial => @posts%>
-  </div>
-  <%=will_paginate @posts%>
-</div>
-
-
 <script>
   function callMe()
   {
@@ -26,11 +38,12 @@
       url : "<%=url_for(:controller=>'posts',:action=>'fetch_new_posts')%>",
       dataType : 'text',
       success: function (text) {
-        $('#my_posts').prepend(text);
-        var size = $(".post > div").size();
-        var limit = 7;
+        $(text).hide().prependTo('#my_posts').fadeIn('slow');
+        var size = $("#my_posts > div").size();
+        size = size -1;
+        var limit = 5;
         while(size>limit) {
-          $('.post:last').remove();
+          $('.post:last').remove().fadeOut('slow');
           size--;
         }
       }

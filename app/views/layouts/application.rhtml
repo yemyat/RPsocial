@@ -16,21 +16,22 @@
     <% end %>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
     <%= javascript_include_tag 'application' %>
     <%= stylesheet_link_tag 'base','main','formtastic','formtastic_changes'%>
   </head>
   <body>
     <%if controller_name == "posts"%>
-
-      <%=render :partial=>'posts/status'%>
-
-      <div id ="content">
-        <div id ="notification" style="display:none"><%= flash[:notice] %></div>
-        <%=yield%>
+      <div id ="notification_area">
+        <div id ="notification" style="display:none">Working</div>
+      </div>
+      <%=yield%>
+    <%elsif controller_name == "passwords"%>
+      <div class ="line">
+        <div class ="form">
+          <%=yield%>
+        </div>
       </div>
     <%else%>
-
       <div id ="notification" style="display:none"><%= flash[:notice] %></div>
       <div id="container">
         <%=yield%>

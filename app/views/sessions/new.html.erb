@@ -1,3 +1,8 @@
+<div id ="logo">
+  <%=image_tag 'logo.gif'%>
+</div>
+
+
 <div id="navigation">
   <ul id="nav_bar">
     <li id ="selected"><%=link_to 'Sign in',sign_in_path%></li>
@@ -36,11 +41,11 @@
       url : "<%=url_for(:controller=>'posts',:action=>'fetch_limited_posts')%>",
       dataType : 'text',
       success: function (text) {
-        $('#update_stream').prepend(text);
+        $(text).hide().prependTo('#update_stream').fadeIn('slow');
         var size = $("#update_stream > div").size();
         var limit = 3;
         while(size>limit) {
-          $('#.post:last').remove();
+          $('#.post:last').remove().fadeOut('slow');
           size--;
         }
       }

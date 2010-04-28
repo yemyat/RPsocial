@@ -1,9 +1,7 @@
 <% div_for post do %>
   <%updated_by = User.find(:first,:conditions=>["id = ?",post.user_id])%>
-
-
   <span style ="float:left"><%= image_tag updated_by.gravatar_url %></span>
-  <div>
+  <div class ="post_details">
     <blockquote><%=h post.status %></blockquote>
     <span class="time">Happened <%=h time_ago_in_words(post.created_at) %> ago --</span>
     <em><%=h updated_by.screen_name%></em>
