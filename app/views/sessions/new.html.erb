@@ -25,12 +25,10 @@
 </div>
 
 <div id ="update_stream">
-  <%= render :partial => 'posts/home_post', :collection=>Post.find(:all, :order => "created_at DESC",:limit=>3)%>
+  <%= render :partial => 'posts/post', :collection=>Post.find(:all, :order => "created_at DESC",:limit=>3)%>
 </div>
 
-
 <script type="text/javascript">
-
   function callMe()
   {
     $.ajax({
@@ -38,8 +36,8 @@
       url : "<%=url_for(:controller=>'posts',:action=>'fetch_limited_posts')%>",
       dataType : 'text',
       success: function (text) {
-        $('#stream').prepend(text);
-        var size = $("#stream > div").size();
+        $('#update_stream').prepend(text);
+        var size = $("#update_stream > div").size();
         var limit = 3;
         while(size>limit) {
           $('#.post:last').remove();

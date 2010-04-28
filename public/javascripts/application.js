@@ -5,16 +5,14 @@ jQuery.ajaxSetup({
 })
 
 $(document).ready(function(){
-
     $("#status_update").submit(function(){
-        $.post($(this).attr("action"),$(this).serialize(),function(){
-            $('#notification').slideUp();
-        },"script");
-        $('#notification').slideDown(400, function() {
-            $('#notification').html('Processing');
-        });
-
-
+        $.post($(this).attr("action"),$(this).serialize(),
+            function (text) {
+                $('#my_posts').prepend(text);         
+                $('.post:last').remove();
+                $('#status_update')[0].reset();
+            }
+            ,"script");
         return false;
     })
 })

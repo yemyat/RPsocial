@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def is_correct_user
     unless current_user.screen_name == params[:screen_name]
       
-        redirect_to sign_out_path
+      redirect_to sign_out_path
     
     end
   end

@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     flash[:notice] = "Shared"
     respond_to do |format|
       format.html {redirect_to user_posts_path(:screen_name=>current_user.screen_name)}
-      format.js {render :layout=>false}
+      format.js {render :partial=>@post}
     end
   end
 
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
     @updated_posts = Post.find(:all,:conditions=>['id > ?',session[:last_retrieval]],:order=>"created_at DESC")
     unless @updated_posts.nil?
       respond_to do |format|
-        format.html {redirect_to user_posts_path(:screen_name=>current_user.screen_name)}
+        format.html{redirect_to :root}
         format.js {render :partial=>@updated_posts}
         session[:last_retrieval] = @updated_posts.first.id
       end

@@ -11,10 +11,10 @@
   <%=image_tag 'border.png'%>
 </div>
 <div class ="right_page">
-  <div id ="posts">
+  <div id ="my_posts">
     <%=render :partial => @posts%>
   </div>
-  <%=will_paginate @posts,:remote => "true"%>
+  <%=will_paginate @posts%>
 </div>
 
 
@@ -25,7 +25,15 @@
       method: 'get',
       url : "<%=url_for(:controller=>'posts',:action=>'fetch_new_posts')%>",
       dataType : 'text',
-      success: function (text) { $('#posts').prepend(text);}
+      success: function (text) {
+        $('#my_posts').prepend(text);
+        var size = $(".post > div").size();
+        var limit = 7;
+        while(size>limit) {
+          $('.post:last').remove();
+          size--;
+        }
+      }
     });
   }
   var myInterval = setInterval(callMe, 15000);
