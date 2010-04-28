@@ -6,7 +6,7 @@
 }
 #logo {
     position:absolute;
-    top:0px;
+    top:40px;
     left:25%;
     right:69%;
 }
@@ -113,8 +113,8 @@
     margin-top:20px;
 }
 .left_container #top_logo img{
-    width:150px;
-    height:60px;
+    width:95%;
+    height:8%;
     padding-bottom:40px;
 }
 .middle_page{
