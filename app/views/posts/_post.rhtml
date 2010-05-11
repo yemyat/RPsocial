@@ -7,3 +7,13 @@
     <em><%=h updated_by.screen_name%></em>
   </div>
 <%end%>
+<div class ="comment">
+  <%=render :partial =>'comments/comment',:collection=>Comment.find(:all,:conditions=>['post_id = ?',post.id])%>
+  <%=render :partial =>'comments/comment_form',:locals=>{:this_post=>post.id}%>
+</div>
+
+  <script>
+    $(document).ready(function(){
+      $(".comment").prependTo('.right_container')
+    })
+  </script>

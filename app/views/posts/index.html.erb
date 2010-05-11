@@ -4,7 +4,7 @@
       <div id ="top_logo">
         <%=image_tag 'logo.gif'%>
       </div>
-      <div id ="user_control">
+      <div id ="user_profile">
         <span id ='user_photo'><%= image_tag current_user.gravatar_url(:size=>80)%><br/></span>
         <ul id="post_nav">
           <li><%=current_user.screen_name%></li>
@@ -25,8 +25,12 @@
     </div>
   </div>
   <div class ="right_page">
-    <div class ="middle_container">
-      {Comment module}
+    <div class ="right_container">
+      <div id="right_adv">
+      </div>
+      <div id="comment_section">
+
+      </div>
     </div>
   </div>
 </div>

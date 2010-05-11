@@ -1,5 +1,5 @@
-<% form_remote_tag(:url=>{:controller => "comments", :action => "create"},:method=>:post,:before=>"$('notification').visualEffect('appear');$('notification').innerHTML = 'Posting your comment'",:success=>"$('notification').innerHTML = 'Success!'",:complete=>"$('notification').visualEffect('fade');reset();")do %>
+<% form_tag :controller => "comments", :action => "create" do%>
   <%= text_area_tag(:comment, nil) %><br />
-  <%= hidden_field_tag(:post_id,this_post.id) %>
+  <%= hidden_field_tag(:post_id,this_post) %>
   <%= submit_tag("Comment") %>
 <% end %>
